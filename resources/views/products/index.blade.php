@@ -1,1 +1,0 @@
-products <br/><a class="btn btn-info" href="{{ route('products.show',1) }}">Show</a>

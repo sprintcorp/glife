@@ -17,9 +17,16 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('matric_no')->unique();
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('user_password');
             $table->integer('isAdmin')->default(0);
+            $table->string('faculty');
+            $table->string('department');
+            $table->string('programme');
+            $table->integer('level');
             $table->rememberToken();
             $table->timestamps();
         });

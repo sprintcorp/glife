@@ -10,12 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use RealRashid\SweetAlert\Facades\Alert;
 
 Route::get('/', function () {
+
+
     return view('welcome');
 });
-Route::resource('products','ProductController');
-Auth::routes();
 
+Auth::routes();
+Route::resource('students','StudentController');
+Route::resource('faculties','FacultyController');
+Route::resource('departments','DepartmentController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');

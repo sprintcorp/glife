@@ -15,9 +15,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset('css/toastr.min.css')}}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -35,13 +37,13 @@
                     <ul class="navbar-nav mr-auto">
                         @if(Auth::user()->isAdmin === 1)
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('products.create') }}">Add Products</a>
+                            <a class="nav-link" href="{{ route('students.index') }}">Add Student</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Products</a>
+                            <a class="nav-link" href="">Students</a>
                         </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Orders</a>
@@ -50,10 +52,10 @@
 
                         @else
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">My Orders</a>
+                                    <a class="nav-link" href="{{route('students.edit',Auth::user()->id)}}">My Profile</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Products</a>
@@ -113,5 +115,12 @@
             @yield('content')
         </main>
     </div>
+    @include('sweetalert::alert')
+<script src="{{asset('js/toastr.min.js')}}"></script>
+{{--<script>--}}
+{{--    @if(Session::has('success'))--}}
+{{--        toastr.success("{{Session::get('success')}}");--}}
+{{--    @endif--}}
+{{--</script>--}}
 </body>
 </html>

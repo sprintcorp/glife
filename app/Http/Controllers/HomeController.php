@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
+use App\Faculty;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -23,7 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(auth()->user()->isAdmin === 1) {
+//            toast('Your Post as been submited!','success');
+            $faculties = Faculty::all();
+            $departments = Department::all();
+
+            return view('admin.home',compact(['faculties',$faculties,'departments',$departments]));
+        }else{
+            return view('student.home');
+        }
     }
 
     /**
