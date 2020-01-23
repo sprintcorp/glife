@@ -75,6 +75,16 @@ body {
   background-color: #f8fafc;
     /*background-image: url("/public/photo/slider.jpg");*/
 }
+.main-img {
+    background: url('../ACEONDO.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+
 
 [tabindex="-1"]:focus {
   outline: 0 !important;
@@ -11099,5 +11109,24 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+
+    table{
+        width:100%;
+    }
+    #example_filter{
+        float:right;
+    }
+    #example_paginate{
+        float:right;
+    }
+    label {
+        display: inline-flex;
+        margin-bottom: .5rem;
+        margin-top: .5rem;
+
+    }
+    .login_background {
+        background-image: url("../Adeyemi-College-of-Education-ACE-Ondo-Main-Gate.jpg") !important;
+    }
 }
 

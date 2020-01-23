@@ -20,7 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('students','StudentController');
+Route::resource('student','StudentsController');
 Route::resource('faculties','FacultyController');
 Route::resource('departments','DepartmentController');
+Route::resource('requests','RequestController');
+Route::resource('payment','PaymentController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');

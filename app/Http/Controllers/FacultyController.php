@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\User;
 use Session;
 use App\Faculty;
 use Illuminate\Http\Request;
@@ -20,7 +21,9 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
+        $student = User::where('isAdmin',0)->get();
+//        $faculty = Faculty::
+        return view('students.list',compact('student',$student));
     }
 
     /**
@@ -89,11 +92,18 @@ class FacultyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Faculty $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Faculty $faculty)
     {
-        //
+        $faculties = Faculty::find($faculty->id);
+//        return $department;
+        if($faculties){
+            $faculties->delete();
+            return back()->with('toast_success',$faculties->name.' deleted successfully');
+        }else {
+            return back()->with('toast_error', 'Record not Deleted');
+        }
     }
 }

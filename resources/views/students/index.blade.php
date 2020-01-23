@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="container">
+        @if(session('success_message'))
+            <div class="alert alert-success">
+                {{session('success_message')}}
+            </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="row">
@@ -15,6 +20,7 @@
                                 <p class="card-text">No of Department {{$faculty->department->count()}}</p>
                                 <a href="{{route('students.show',$faculty->id)}}" class="btn btn-primary">Select Faculty</a>
                                 <a href="{{route('faculties.show',$faculty->id)}}" class="btn btn-outline-info ml-3">View Department</a>
+                                <a href="{{route('student.show',$faculty->id)}}" class="btn btn-outline-primary  ml-3">View Student</a>
                             </div>
                         </div>
                     </div>

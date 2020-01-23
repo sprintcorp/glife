@@ -78,7 +78,9 @@
                                     <span class="badge badge-primary badge-pill">{{$faculty->department->count()}} department</span>
                                 @endif
                             </b>
+
                         </button>
+                        <i _ngcontent-pyh-c19="" class="material-icons icon-image-preview float-right" data-toggle="modal" data-target="#exampleModalCente{{$faculty->id}}">delete</i>
                     </h2>
                 </div>
 
@@ -97,6 +99,41 @@
 
                     </div>
                 </div>
+
+
+                @foreach($faculties as $faculty)
+                    <div class="modal fade" id="exampleModalCente{{$faculty->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="exampleModalCenterTitle">Are you sure you want to delete {{$faculty->name}} faculty</h6>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row justify-content-center">
+                                        <form action="{{ route('faculties.destroy',$faculty->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Yes,Proceed with action</button>
+                                        </form>
+                                        <button type="button" class="btn btn-primary ml-3" data-dismiss="modal">No, I don't</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+
+
+
+
+
                 @foreach($faculty->department as $department)
                 <div class="modal fade" id="exampleModalCenter{{$department->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">

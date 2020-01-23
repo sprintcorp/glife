@@ -17,6 +17,30 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.jscroll.min.js') }}"></script>
+{{--    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>--}}
+{{--    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
+{{--    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>--}}
+
+
+
+{{--    <script>--}}
+{{--        $(document).ready(function() {--}}
+{{--            $('#example').DataTable();--}}
+{{--        } );--}}
+{{--    </script>--}}
+
+
+
+    <style>
+        table.dataTable{border-collapse:collapse !important;}
+    </style>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('css/toastr.min.css')}}" rel="stylesheet">
@@ -43,11 +67,8 @@
                             <a class="nav-link" href="{{ route('students.index') }}">Add Student</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Students</a>
+                            <a class="nav-link" href="{{route('faculties.index')}}">Students</a>
                         </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Orders</a>
-                            </li>
 
 
                         @else
@@ -57,9 +78,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('students.edit',Auth::user()->id)}}">My Profile</a>
                                 </li>
+                        @if(Auth::user()->request === 0)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Products</a>
+                                    <a class="nav-link" href="{{route('payment.index')}}">Request ID Card</a>
                                 </li>
+                            @endif
                         @endif
 
 
@@ -117,10 +140,9 @@
     </div>
     @include('sweetalert::alert')
 <script src="{{asset('js/toastr.min.js')}}"></script>
-{{--<script>--}}
-{{--    @if(Session::has('success'))--}}
-{{--        toastr.success("{{Session::get('success')}}");--}}
-{{--    @endif--}}
-{{--</script>--}}
+
 </body>
+
 </html>
+
+

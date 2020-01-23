@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Carbon;
 
 class LoginController extends Controller
 {
@@ -52,11 +55,22 @@ class LoginController extends Controller
 //            if (auth()->user()->isAdmin === 1) {
 //                return redirect()->route('admin.home');
 //            }else{
+            $user = User::find(auth()->user()->id);
+            $user->last_login_at = new \DateTime();
+            $user->last_login_ip = $request->getClientIp();
+            $user->save();
                 return redirect()->route('home');
 //            }
         }else{
             return redirect()->route('login')
                 ->with('error','Username/Matric no And Password Are Wrong.');
         }
+    }
+    function authenticated(Request $request, $user)
+    {
+        $user->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'last_login_ip' => $request->getClientIp()
+        ]);
     }
 }

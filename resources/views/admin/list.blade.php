@@ -8,6 +8,7 @@
                 <div class="card">
                     <div class="card-header">Student Overview</div>
                     <div class="row p-2">
+{{--                        <div class="infinite-scroll">--}}
                         @foreach($students as $student)
                             <div class="card ml-3 mb-3" style="max-width: 350px;">
                                 <div class="row no-gutters">
@@ -31,12 +32,27 @@
                                 </div>
                             </div>
                         @endforeach
+{{--                        </div>--}}
                     </div>
 
                 </div>
-                <div class="pt-5 justify-content-center">{{ $students->links() }}</div>
+{{--                <div class="pt-5 justify-content-center">{{ $students->links() }}</div>--}}
             </div>
         </div>
     </div>
-
+{{--    <script type="text/javascript">--}}
+{{--        $('ul.pagination').hide();--}}
+{{--        $(function() {--}}
+{{--            $('.infinite-scroll').jscroll({--}}
+{{--                autoTrigger: true,--}}
+{{--                loadingHtml: '<img class="center-block" src="{{asset('loading.gif')}}" alt="Loading..." />',--}}
+{{--                padding: 0,--}}
+{{--                nextSelector: '.pagination li.active + li a',--}}
+{{--                contentSelector: 'div.infinite-scroll',--}}
+{{--                callback: function() {--}}
+{{--                    $('ul.pagination').remove();--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection

@@ -60,7 +60,10 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        $students = User::where('department_id',$id)->get();
+//        $level = $this->request->all();
+//        return $level;
+
+        $students = User::where('department_id',$id)->paginate(30);
         return view('students.show',compact('students',$students));
     }
 

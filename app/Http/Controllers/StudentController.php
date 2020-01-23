@@ -77,7 +77,6 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-//        return $id;
         $departments = Department::where('faculty_id',$id)->get();
         $faculty = Faculty::where('id',$id)->first();
         return view('students.create',compact(['departments',$departments,'faculty',$faculty]));
@@ -105,48 +104,62 @@ class StudentController extends Controller
     public function update(UpdateRequest $request, User $student)
     {
         $request->validate([
-
-            'image'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'file'     =>  'image|mimes:jpeg,png,jpg,gif|max:2043'
         ]);
         $user = User::find($student->id);
         $user->name = $request['name'];
         $user->email = $request['email'];
+        $user->blood = $request['blood'];
+        $user->gender = $request['gender'];
+        $user->kin = $request['kin'];
+        $user->address = $request['address'];
         if ($request->has('file')) {
-            $reques = request();
+          $response =  $this->fileUpload($request->file('file'));
+            if(!empty($user->image)) {
+                unlink($user->image);
+            }
+            $user->image = $response;
+        }
 
-            $profileImage = $reques->file('file');
-            $profileImageSaveAsName = time() . Auth::id() . "file." .
-                $profileImage->getClientOriginalExtension();
-
-            $upload_path = 'photo/';
-            $profile_image_url = $upload_path . $profileImageSaveAsName;
-            $success = $profileImage->move($upload_path, $profileImageSaveAsName);
-            $user->image = $profile_image_url;
+        if ($request->has('sign')) {
+            $response =  $this->fileUpload($request->file('sign'));
+            if(!empty($user->signature)) {
+                unlink($user->signature);
+            }
+            $user->signature = $response;
         }
         $user->save();
         if($request['old_password'] != ""){
             if(!(Hash::check($request['old_password'], Auth::user()->password))){
-                return redirect()->back()->with('error','Your current Password Does not match the former password');
+                return redirect()->back()->with('toast_error','Your current Password Does not match the former password');
             }
 
             if(strcmp($request['old_password'], $request['new_password'])== 0){
-                return redirect()->back()->with('error','Your current Password Cannot be the same as your previous password');
+                return redirect()->back()->with('toast_error','Your current Password Cannot be the same as your previous password');
             }
 
-            $validation = $request->validate([
+            $this->validate($request, [
                 'old_password' =>'required',
                 'new_password'=> 'required|string|min:8|confirmed'
             ]);
+
+//            $validation = $request->validate([
+//                'old_password' =>'required',
+//                'new_password'=> 'required|string|min:8|confirmed'
+//            ]);
             $user->password = bcrypt($request['new_password']);
             $user->user_password = $request['new_password'];
             $user->save();
 
 
         }
+//        else{
+//            return back()->with('toast_error','Old Password is required to update new password');
+//        }
 
 
 
-        return back();
+        return back()->with('toast_success','Profile Updated');
     }
 
     /**

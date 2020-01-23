@@ -20,19 +20,28 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <select id="programme" name="programme" class="form-control">
-                                        <option selected>Select programme</option>
+                                        <option value="" disabled selected>Select programme</option>
                                         <option value="NCE">NCE</option>
+                                        <option value="DEGREE">DEGREE</option>
+                                        <option value="DEGREE 2">DEGREE 2</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <select id="level" name="level" class="form-control">
-                                        <option selected>Select level</option>
+                                        <option value="">---Select level---</option>
+                                        <option>SELECT NCE</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option>SELECT DEGREE</option>
                                         <option value="100">100</option>
                                         <option value="200">200</option>
                                         <option value="300">300</option>
                                         <option value="400">400</option>
+                                        <option>SELECT DEGREE 2</option>
+                                        <option value="Direct Entry">Direct Entry</option>
                                     </select>
                                 </div>
                             </div>
@@ -68,4 +77,6 @@
             </div>
         </div>
     </div>
+
 @endsection
+

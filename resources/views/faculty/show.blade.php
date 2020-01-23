@@ -12,6 +12,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{$departments->name}}</h5>
                                     <p class="card-text">No of Student {{$departments->students->count()}}</p>
+
                                     <a href="{{route('departments.show',$departments->id)}}" class="btn btn-outline-info ml-3">View Student</a>
                                 </div>
                             </div>
