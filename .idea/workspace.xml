@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a6f584b-6741-4038-b779-a68c29909235" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaffsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaffsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/UserCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UserCreated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/user.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="5a6f584b-6741-4038-b779-a68c29909235" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +93,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-312">
+            <state>
               <caret column="30" selection-start-column="30" selection-end-column="30" />
             </state>
           </provider>
@@ -109,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/emails/user.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
-              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -496,7 +490,7 @@
       <workItem from="1582562887444" duration="100000" />
       <workItem from="1582563076959" duration="302000" />
       <workItem from="1583009804384" duration="21011000" />
-      <workItem from="1583157699449" duration="3872000" />
+      <workItem from="1583157699449" duration="5156000" />
     </task>
     <task id="LOCAL-00001" summary="adeyemi commit 1">
       <created>1578276314749</created>
@@ -537,7 +531,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185167000" />
+    <option name="totallyTimeSpent" value="186451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -942,13 +936,6 @@
     <entry file="file://$PROJECT_DIR$/.env.example">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <caret column="30" selection-start-column="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StaffsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
@@ -959,10 +946,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/emails/user.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="32" />
         </state>
       </provider>
     </entry>
