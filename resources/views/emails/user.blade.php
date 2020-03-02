@@ -5,7 +5,7 @@ Login details
 Email: {{$user->email}}
 Password: {{$user->user_password}}
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => 'Login'])
 Button Text
 @endcomponent
 

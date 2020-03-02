@@ -18,7 +18,6 @@ class StaffsController extends Controller
     public function index()
     {
         $staffs = User::where('isAdmin',2)->get();
-//        dd($staffs);
         return view('staffs.index',compact('staffs',$staffs));
     }
 
@@ -40,13 +39,6 @@ class StaffsController extends Controller
      */
     public function store(Request $request)
     {
-//        $rules = [
-//            'matric_no'  => 'required',
-//            'email'  => 'required|email|unique:users',
-//            'password'  => 'required|min:6'
-//            ];
-//
-//        $this->validate($request, $rules);
         $matric_no = $request->matric_no;
         $email = $request->email;
         $password = $request->password;
@@ -57,13 +49,14 @@ class StaffsController extends Controller
                 'email' => $email[$count],
                 'password'  => Hash::make($password[$count]),
                 'user_password' => $password[$count],
+                'isAdmin' => '2'
             );
 
             $insert_data[] = $data;
-
+            Mail::to($data['email'])->send(new UserCreated($data));
         }
         User::insert($insert_data);
-        Mail::to($insert_data)->send(new UserCreated($insert_data));
+
 
         return back()->with('toast_success',$count. ' Staffs has been successfully registered');
 

@@ -17,7 +17,7 @@ class UserCreated extends Mailable
      *
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct($user)
     {
         $this->user =  (object)$user;
     }
