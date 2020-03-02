@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -23,6 +23,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     <script src="{{ asset('js/jquery.jscroll.min.js') }}"></script>
 {{--    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>--}}
 {{--    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
@@ -66,9 +70,25 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('students.index') }}">Add Student</a>
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('staffs.index') }}">Staff</a>
+                            </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('faculties.index')}}">Students</a>
+                            <a href="{{asset('Book1.xlsx')}}" class="nav-link">Download Student Form</a>
                         </li>
+
+                            @elseif(Auth::user()->isAdmin === 2)
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('staff.edit',Auth::user()->id)}}">My Profile</a>
+                                </li>
+                            @if(Auth::user()->request === 0)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('staff.index')}}">Request ID Card</a>
+                                </li>
+                            @endif
 
 
                         @else
@@ -80,22 +100,11 @@
                                 </li>
                         @if(Auth::user()->request === 0)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('payment.index')}}">Request ID Card</a>
+                                    <a class="nav-link" href="{{route('requests.index')}}">Request ID Card</a>
                                 </li>
                             @endif
                         @endif
 
-
-{{--                        <li class="nav-item dropdown">--}}
-{{--                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-{{--                                Dropdown link--}}
-{{--                            </a>--}}
-{{--                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">--}}
-{{--                                <a class="dropdown-item" href="#">Action</a>--}}
-{{--                                <a class="dropdown-item" href="#">Another action</a>--}}
-{{--                                <a class="dropdown-item" href="#">Something else here</a>--}}
-{{--                            </div>--}}
-{{--                        </li>--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

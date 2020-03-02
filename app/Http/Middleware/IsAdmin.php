@@ -17,8 +17,10 @@ class IsAdmin
     {
         if(auth()->user()->isAdmin === 1){
             return $next($request);
+        }elseif (auth()->user()->isAdmin === 2){
+            return $next($request);
+        }else{
+            return redirect('home')->with('error',"You don't have admin access.");
         }
-
-        return redirect('home')->with('error',"You don't have admin access.");
     }
 }

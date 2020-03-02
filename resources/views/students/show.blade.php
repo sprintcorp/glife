@@ -24,6 +24,7 @@
                                             <p class="card-text">{{$student->faculty->name}}</p>
                                             <p class="card-text">{{$student->department->name}}</p>
                                             <p class="card-text">{{$student->programme}} / {{$student->level}}</p>
+                                            <p class="card-text">{{$student->matric_no}}</p>
 
                                             <p class="card-text"><small class="text-muted">Last updated {{date('d-F-Y', strtotime($student->updated_at))}}</small></p>
                                         </div>

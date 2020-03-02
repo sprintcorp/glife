@@ -52,6 +52,7 @@ class LoginController extends Controller
 
         if(auth()->attempt(array('matric_no' => $input['matric_no'], 'password' => $input['password'])))
         {
+            
 //            if (auth()->user()->isAdmin === 1) {
 //                return redirect()->route('admin.home');
 //            }else{
@@ -63,7 +64,8 @@ class LoginController extends Controller
 //            }
         }else{
             return redirect()->route('login')
-                ->with('error','Username/Matric no And Password Are Wrong.');
+                ->with('toast_error','Username/Matric no And Password Are Wrong.');
+               
         }
     }
     function authenticated(Request $request, $user)

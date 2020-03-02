@@ -26,6 +26,7 @@
             callback: function(response){
                 alert('success. transaction ref is ' + response.reference);
                 window.location.replace("{{route('requests.index')}}");
+                // window.location.replace("{{route('requests.edit',1)}}");
 
             },
             onClose: function(){

@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 pt-5">
+             @if(session('error_message'))
+                    <div class="alert alert-error">
+                        {{session('error_message')}}
+                    </div>
+                @endif
             <div class="card">
                 <div class="card-header text-center">PORTAL LOGIN PAGE</div>
 
@@ -57,11 +62,11 @@
                                     {{ __('Login') }}
                                 </button>
 
-{{--                                @if (Route::has('password.request'))--}}
-{{--                                    <a class="btn btn-link" href="{{ route('password.request') }}">--}}
-{{--                                        {{ __('Forgot Your Password?') }}--}}
-{{--                                    </a>--}}
-{{--                                @endif--}}
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </form>

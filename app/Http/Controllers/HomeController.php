@@ -32,6 +32,8 @@ class HomeController extends Controller
             $departments = Department::all();
 
             return view('admin.home',compact(['faculties',$faculties,'departments',$departments]));
+        }elseif (auth()->user()->isAdmin === 2){
+            return view('staff.home');
         }else{
             return view('student.home');
         }

@@ -28,7 +28,7 @@
                                 <label for="exampleInputEmail1">Fullname</label>
                                 <input type="text" class="form-control" name="name" value="{{Auth::user()->name}}" id="name" aria-describedby="emailHelp">
                             </div>
-                            <label class="text-danger">N:B Maximum 12 Kilobytes</label>
+                            <label class="text-danger">N:B Maximum 25 Kilobytes</label>
                             <div class="row pl-3">
 
                                 <div class="col-md-8 form-group">
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
 
-                            <label class="text-danger">N:B Maximum 12 Kilobytes</label>
+                            <label class="text-danger">N:B Maximum 25 Kilobytes</label>
                             <div class="row pl-3">
 
                                 <div class="col-md-8 form-group">

@@ -103,8 +103,8 @@ class StudentController extends Controller
      */
     public function update(UpdateRequest $request, User $student)
     {
-        $request->validate([
-            'file'     =>  'image|mimes:jpeg,png,jpg,gif|max:2043'
+                $request->validate([
+            'file'     =>  'image|mimes:jpeg,png,jpg,gif|max:25'
         ]);
         $user = User::find($student->id);
         $user->name = $request['name'];

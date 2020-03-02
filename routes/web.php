@@ -21,6 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::resource('students','StudentController');
 Route::resource('student','StudentsController');
+Route::resource('staff','StaffController');
+Route::resource('staffs','StaffsController');
 Route::resource('faculties','FacultyController');
 Route::resource('departments','DepartmentController');
 Route::resource('requests','RequestController');
