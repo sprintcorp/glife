@@ -60,10 +60,10 @@ class StaffsController extends Controller
             );
 
             $insert_data[] = $data;
-
+            Mail::to($email[$count])->send(new UserCreated($insert_data));
         }
         User::insert($insert_data);
-        Mail::to($insert_data)->send(new UserCreated($insert_data));
+
 
         return back()->with('toast_success',$count. ' Staffs has been successfully registered');
 
