@@ -16,6 +16,7 @@ class StudentResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=> $this->id,
             'name' => $this->name,
             'matric_no' => $this->matric_no,
             'gender' => $this->gender,
@@ -25,8 +26,8 @@ class StudentResource extends JsonResource
             'next_of_kin' => $this->kin,
             'address' => $this->address,
             'programme' => $this->programme,
-            'department' => $this->department->name,
-            'faculty' => $this->faculty->name,
+            'department' => $this->department['name'],
+            'faculty' => $this->faculty['name'],
             'level' => $this->level,
             // 'year' => $this->created_at->format('Y'),
         ];

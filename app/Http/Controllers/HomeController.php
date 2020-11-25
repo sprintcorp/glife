@@ -26,13 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->isAdmin === 1) {
-//            toast('Your Post as been submited!','success');
+        if(auth()->user()->isAdmin == 1) {
+
             $faculties = Faculty::all();
             $departments = Department::all();
 
             return view('admin.home',compact(['faculties',$faculties,'departments',$departments]));
-        }elseif (auth()->user()->isAdmin === 2){
+        }elseif (auth()->user()->isAdmin == 2){
             return view('staff.home');
         }else{
             return view('student.home');

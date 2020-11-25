@@ -1,16 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class RequestController extends Controller
+class RestoreController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +15,6 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return view('request.card');
     }
 
     /**
@@ -40,11 +35,7 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request = User::find(Auth::user()->id);
-        $request->request = 1;
-        $request->save();
-        return redirect('home')->with('toast_success',' ID request submitted successfully');
+
     }
 
     /**
@@ -55,8 +46,7 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-
-
+        //
     }
 
     /**
@@ -67,12 +57,7 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-//        //
-//        return $id;
-//        $request = User::find(Auth::user()->id);
-//        $request->request = $id;
-//        $request->save();
-//        return redirect('home')->with('toast_success',' ID request submitted successfully');
+        //
     }
 
     /**

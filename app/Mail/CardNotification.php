@@ -2,24 +2,24 @@
 
 namespace App\Mail;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserCreated extends Mailable
+class CardNotification extends Mailable
 {
     use Queueable, SerializesModels;
-        public $user;
-        /**
-         * Create a new message instance.
-         *
-         * @param User $user
-         */
+    public $user;
+
+    /**
+     * Create a new message instance.
+     *
+     * @param $user
+     */
     public function __construct($user)
     {
-        $this->user =  (object)$user;
+        $this->user = $user;
     }
 
     /**
@@ -29,6 +29,6 @@ class UserCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user')->subject('Registration Details');
+        return $this->markdown('emails.card_notification')->subject('ACEONDO Card Notification');
     }
 }

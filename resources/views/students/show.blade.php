@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{$student->name}}</h5>
+                                            <h5 class="card-title">{{$student->name?$student->name:'Incomplete Profile'}}</h5>
                                             <p class="card-text">{{$student->faculty->name}}</p>
                                             <p class="card-text">{{$student->department->name}}</p>
                                             <p class="card-text">{{$student->programme}} / {{$student->level}}</p>

@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Database\QueryException;
 use Validator;
 
 class StudentController extends Controller
@@ -27,7 +28,7 @@ class StudentController extends Controller
     public function index()
     {
 
-        if(auth()->user()->isAdmin === 1) {
+        if(auth()->user()->isAdmin == 1) {
 //            toast('Your Post as been submited!','success');
             $faculties = Faculty::all();
             return view('students.index',compact('faculties',$faculties));
@@ -60,12 +61,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $department = $request['departments'];
+         $department = $request['departments'];
         $faculty = $request['faculty'];
         $programme = $request['programme'];
         $level = $request['level'];
-        Excel::import(new ImportUsers($department,$faculty,$programme,$level),request()->file('file'));
-        return back()->with('toast_success','Student file successfully imported');
+        try {
+            Excel::import(new ImportUsers($department, $faculty, $programme, $level), request()->file('file'));
+        }catch (QueryException  $queryException){
+            alert()->warning('WarningAlert','Duplicate Entry on imported file check Email/Matric column');
+            return back();
+        }
+        return back()->with('toast_success', 'Student file successfully imported');
 
     }
 
@@ -103,9 +109,12 @@ class StudentController extends Controller
      */
     public function update(UpdateRequest $request, User $student)
     {
-                $request->validate([
+        $validate = $request->validate([
             'file'     =>  'image|mimes:jpeg,png,jpg,gif|max:25'
         ]);
+       if(!$validate){
+            alert()->warning('WarningAlert','Image size exceed 25kb');
+        }
         $user = User::find($student->id);
         $user->name = $request['name'];
         $user->email = $request['email'];
@@ -115,6 +124,7 @@ class StudentController extends Controller
         $user->address = $request['address'];
         if ($request->has('file')) {
           $response =  $this->fileUpload($request->file('file'));
+
             if(!empty($user->image)) {
                 unlink($user->image);
             }

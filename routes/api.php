@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::resource('admin','AdminController');
+Route::resource('staff/request','StaffRequestController');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -17,14 +17,35 @@
                             @csrf
                             <div class="input_fields_wrap">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-md-3">
                                         <input type="email" name="email[]" class="form-control" placeholder="Email" required>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md-3">
                                         <input type="text" name="matric_no[]" class="form-control" placeholder="ID number" required>
                                     </div>
-                                    <div class="col">
-                                        <input type="password" name="password[]" class="form-control" placeholder="Password" required>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                            <select name="designation[]" class="form-control" id="exampleFormControlSelect1">
+                                                <option>Select Designation</option>
+
+                                                    <option value="Junior Staff">Junior Staff</option>
+                                                    <option value="Senior Staff">Senior Staff</option>
+                                                    <option value="Academic Staff">Academic Staff</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+
+                                            <select name="department[]" class="form-control" id="exampleFormControlSelect1">
+                                                <option>Select Department</option>
+                                                @foreach($departments as $department)
+                                                <option value="{{$department->id}}">{{$department->name}}</option>
+                                               @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                     <button class="btn btn-info add_field_button"><i class="fa fa-plus"></i></button>
 
@@ -51,11 +72,28 @@
                 if(x < max_fields){ //max input box allowed
                     x++; //text box increment
                     $(wrapper).append('' +
-                        ' <div class="row mt-3 mb-3"><div class="col"><input type="email" name="email[]" class="form-control" placeholder="Email" required></div>' +
+                        ' <div class="row mt-3 mb-3"><div class="col-md-3"><input type="email" name="email[]" class="form-control" placeholder="Email" required></div>' +
 
-                        ' <div class="col"><input type="text" name="matric_no[]" class="form-control" placeholder="ID number" required></div>' +
+                        ' <div class="col-md-3"><input type="text" name="matric_no[]" class="form-control" placeholder="ID number" required></div>' +
 
-                        ' <div class="col"><input type="password" name="password[]" class="form-control" placeholder="Password" required></div>' +
+                        '<div class="col-md-3"> ' +
+                            '<select name="designation[]" class="form-control" id="exampleFormControlSelect1">'+
+                            '<option>Select Designation</option>'+
+                            '<option value="Junior Staff">Junior Staff</option>'+
+                            '<option value="Senior Staff">Senior Staff</option>'+
+                            ' <option value="Academic Staff">Academic Staff</option>'+
+                            ' </select>'+
+                        '</div>'+
+
+                        ' <div class="col-md-2">'+
+
+                                '<select name="department[]" class="form-control" id="exampleFormControlSelect1">'+
+                                '<option>Select Department</option>'+
+                                    '@foreach($departments as $department)'+
+                                        '<option value="{{$department->id}}">{{$department->name}}</option>'+
+                                    '@endforeach'+
+                        '</select>'+
+                        '</div>' +
                         '' +
                         '<button class="btn btn-info remove_field"><i class="fa fa-minus"></i></button></div>'); //add input box
                 }

@@ -1,10 +1,13 @@
 @component('mail::message')
-# Welcome to ACOED ID Card Portal
+# Profile update by ACOED Admin
 
-Login details<br>
+The body of your message.
+
+Email: {{$user->email}} <br>
+Password: {{$user->user_password}} <br>
 Staff ID: {{$user->matric_no}}<br>
-Password: {{$user->user_password}}<br>
 Designation: {{$user->designation}}
+
 @component('mail::button', ['url' => route('login')])
 Login
 @endcomponent

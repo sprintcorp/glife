@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminMail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
-class StaffController extends Controller
+class PasswordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +28,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.password');
     }
 
     /**
@@ -59,7 +61,7 @@ class StaffController extends Controller
      */
     public function edit(User $user)
     {
-        return view('staff.profile',compact('user',$user));
+        //
     }
 
     /**
@@ -71,54 +73,12 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-         try {
-        $request->validate([
-            'file'     =>  'image|mimes:jpeg,png,jpg,gif|max:25',
-            // 'sign'     =>  'image|mimes:jpeg,png,jpg,gif|max:25'
-        ]);
-         }catch (\Exception $e){
-                alert()->warning('WarningAlert',$e->getMessage());
-                return back();
-            }
-
         $user = User::find($id);
-
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->blood = $request['blood'];
-        $user->gender = $request['gender'];
-        $user->kin = $request['kin'];
-        $user->address = $request['address'];
-
-//        $user->matric_no = Auth::user()->matric_no;
-        if ($request->has('file')) {
-            try {
-                $response = $this->fileUpload($request->file('file'));
-                    
-                if (!empty($user->image)) {
-                    unlink($user->image);
-                }
-                $user->image = $response;
-            }catch (\Exception $e){
-                alert()->warning('WarningAlert',$e->getMessage());
-                return back();
-            }
-        }
-
-        if ($request->has('sign')) {
-            try {
-            $response =  $this->fileUpload($request->file('sign'));
-            if(!empty($user->signature)) {
-                unlink($user->signature);
-            }
-            $user->signature = $response;
-            }catch (\Exception $e){
-                alert()->warning('WarningAlert',$e->getMessage());
-                return back();
-            }
-        }
+        $user->matric_no = $request['matric_no'];
         $user->save();
-        if($request['old_password'] !== ""){
+        if($request['old_password'] != ""){
             if(!(Hash::check($request['old_password'], Auth::user()->password))){
                 return redirect()->back()->with('toast_error','Your current Password Does not match the former password');
             }
@@ -135,6 +95,7 @@ class StaffController extends Controller
             $user->password = bcrypt($request['new_password']);
             $user->user_password = $request['new_password'];
             $user->save();
+            Mail::to($user->email)->send(new AdminMail($user));
 
         }
         return back()->with('toast_success','Profile Updated');

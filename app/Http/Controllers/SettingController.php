@@ -1,16 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class RequestController extends Controller
+class SettingController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
-        return view('request.card');
+        $user = null;
+        return view('admin.settings',compact('user',$user));
     }
 
     /**
@@ -29,7 +25,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -40,11 +36,14 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request = User::find(Auth::user()->id);
-        $request->request = 1;
-        $request->save();
-        return redirect('home')->with('toast_success',' ID request submitted successfully');
+         $data = $request->matric_no;
+        $user = User::where('matric_no',$data)->first();
+        if($user) {
+            return view('admin.settings', compact('user', $user));
+        }else{
+            $user = null;
+            return back()->with('toast_error','Staff/Student ID not does not exist.');
+        }
     }
 
     /**
@@ -55,8 +54,7 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-
-
+        //
     }
 
     /**
@@ -67,12 +65,7 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-//        //
-//        return $id;
-//        $request = User::find(Auth::user()->id);
-//        $request->request = $id;
-//        $request->save();
-//        return redirect('home')->with('toast_success',' ID request submitted successfully');
+        //
     }
 
     /**
@@ -84,7 +77,10 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->request = 0;
+        $user->save();
+        return back()->with('toast_success',$user->name.' Restored');
     }
 
     /**

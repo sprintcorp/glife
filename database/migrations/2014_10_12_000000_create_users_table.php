@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('matric_no')->unique();
             $table->string('image')->nullable();
@@ -23,10 +23,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('user_password');
             $table->integer('isAdmin')->default(0);
-            $table->string('faculty');
-            $table->string('department');
-            $table->string('programme');
-            $table->integer('level');
+            $table->string('faculty')->nullable();
+            $table->string('department')->nullable();
+            $table->string('programme')->nullable();
+            $table->integer('level')->nullable();
+            $table->string('designation')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

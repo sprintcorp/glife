@@ -63,7 +63,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @if(Auth::user()->isAdmin === 1)
+                        @if(Auth::user()->isAdmin == 1)
                         <li class="nav-item active">
                             <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
@@ -73,20 +73,28 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('staffs.index') }}">Staff</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('settings.index') }}">Reset Request</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('account.create') }}">Settings</a>
+                            </li>
                         <li class="nav-item">
                             <a href="{{asset('Book1.xlsx')}}" class="nav-link">Download Student Form</a>
                         </li>
 
-                            @elseif(Auth::user()->isAdmin === 2)
+                            @elseif(Auth::user()->isAdmin == 2)
                                 <li class="nav-item active">
                                     <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('staff.edit',Auth::user()->id)}}">My Profile</a>
                                 </li>
-                            @if(Auth::user()->request === 0)
+                            @if(Auth::user()->request == 0)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('staff.index')}}">Request ID Card</a>
+                                    <a class="nav-link" href="{{route('requests.index')}}">Request ID Card</a>
                                 </li>
                             @endif
 
@@ -98,7 +106,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('students.edit',Auth::user()->id)}}">My Profile</a>
                                 </li>
-                        @if(Auth::user()->request === 0)
+                        @if(Auth::user()->request == 0)
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('requests.index')}}">Request ID Card</a>
                                 </li>
@@ -122,7 +130,12 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    @if(Auth::user()->name !== '')
+                                    {{ Auth::user()->name }}
+                                        @else
+                                        Update Profile
+                                    @endif
+                                        <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

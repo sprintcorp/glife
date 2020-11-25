@@ -20,7 +20,11 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $id = $this->request->get('id');
+        dd($id);
+        $students = User::where('department_id',$id)->paginate(30);
+        dd($students);
+        return view('students.show',compact('students',$students));
     }
 
     /**
@@ -62,8 +66,9 @@ class DepartmentController extends Controller
     {
 //        $level = $this->request->all();
 //        return $level;
-
+        
         $students = User::where('department_id',$id)->paginate(30);
+        dd($students);
         return view('students.show',compact('students',$students));
     }
 

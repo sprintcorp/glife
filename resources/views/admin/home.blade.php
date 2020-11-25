@@ -91,8 +91,12 @@
                                 @foreach($faculty->department as $department)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{$department->name}}
-{{--                                    <span class="badge badge-primary badge-pill">14</span>--}}
-                                    <i _ngcontent-pyh-c19="" class="material-icons icon-image-preview" data-toggle="modal" data-target="#exampleModalCenter{{$department->id}}">delete</i>
+
+                                    <form action="{{ route('departments.destroy',$department->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </li>
                                 @endforeach
                             </ul>
@@ -135,11 +139,11 @@
 
 
                 @foreach($faculty->department as $department)
-                <div class="modal fade" id="exampleModalCenter{{$department->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="exampleModal{{$department->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h6 class="modal-title" id="exampleModalCenterTitle">Are you sure you want to delete {{$department->name}} department</h6>
+                                <h6 class="modal-title" id="exampleModal">Are you sure you want to delete {{$department->name}} department</h6>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

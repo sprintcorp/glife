@@ -10,7 +10,7 @@
                     </div>
                 @endif
             <div class="card">
-                <div class="card-header text-center">PORTAL LOGIN PAGE</div>
+                <div class="card-header text-center">ACOED ID CARD LOGIN PAGE</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

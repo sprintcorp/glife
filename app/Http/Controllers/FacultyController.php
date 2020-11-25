@@ -98,7 +98,7 @@ class FacultyController extends Controller
     public function destroy(Faculty $faculty)
     {
         $faculties = Faculty::find($faculty->id);
-//        return $department;
+
         if($faculties){
             $faculties->delete();
             return back()->with('toast_success',$faculties->name.' deleted successfully');

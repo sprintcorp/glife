@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\Http\Resources\StudentResource;
+use App\Mail\CardNotification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 //use App\Http\Resources\Student as StudentResource;
 class AdminController extends Controller
@@ -25,7 +27,7 @@ class AdminController extends Controller
     {
         $key = $this->request->all();
         if($key['key'] === env('API_KEY')){
-        $users = User::where('request',1)->get();
+        $users = User::where('request',1)->where('isAdmin',0)->get();
         if($users->count() === 0){
             return response()->json("No Request made for id card");
         }
@@ -50,61 +52,22 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $key = $this->request->all();
-        if($key['key'] === env('API_KEY')) {
-//            return response()->json(true);
-            DB::table('users')->where('request', 1)->update(['request' => 0]);
+        $data = $this->request->all();
+        if($data['key'] === env('API_KEY')) {
+            $object = json_decode($data['id'],true);
+            foreach ($object as $key => $value) {
+                $action =array(
+                    'request' => 0
+                );
+                User::where('id', $object[$key])->where('isAdmin',0)->update($action);
+                $users = User::where('id',$object[$key])->where('isAdmin',0)->get();
+                Mail::to($users)->send(new CardNotification($users));
+            }
             return response()->json('Student Request restored to default');
         }
-        return response()->json(false);
-//            return response()->json(env('APP_KEY'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-//        return $id;
 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -8,18 +8,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserCreated extends Mailable
+class UserUpdate extends Mailable
 {
     use Queueable, SerializesModels;
-        public $user;
-        /**
-         * Create a new message instance.
-         *
-         * @param User $user
-         */
+    public $user;
+    /**
+     * Create a new message instance.
+     *
+     * @param User $user
+     */
     public function __construct($user)
     {
-        $this->user =  (object)$user;
+        $this->user =  $user;
     }
 
     /**
@@ -29,6 +29,6 @@ class UserCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user')->subject('Registration Details');
+        return $this->markdown('emails.update')->subject('Profile Update');
     }
 }

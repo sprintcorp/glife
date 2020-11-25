@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Resources\StaffResource;
+use App\Mail\CardNotification;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
-class RequestController extends Controller
+class StaffRequestController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +18,15 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
-        return view('request.card');
+        $key = $this->request->all();
+        if($key['key'] === env('API_KEY')){
+            $users = User::where('request',1    )->where('isAdmin',2)->get();
+            if($users->count() === 0){
+                return response()->json("No Request made for id card");
+            }
+            return response()->json(StaffResource::collection($users));
+        }
+        return response()->json("You don't have access to this file");
     }
 
     /**
@@ -38,13 +45,24 @@ class RequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
-        $request = User::find(Auth::user()->id);
-        $request->request = 1;
-        $request->save();
-        return redirect('home')->with('toast_success',' ID request submitted successfully');
+        $data = $this->request->all();
+        if($data['key'] === env('API_KEY')) {
+        $object = json_decode($data['id'],true);
+        foreach ($object as $key => $value) {
+            $action =array(
+                'request' => 2
+            );
+
+         User::where('id', $object[$key])->where('isAdmin',2)->update($action);
+            $users = User::where('id',$object[$key])->where('isAdmin',2)->get();
+//            dd($value);
+           Mail::to($users)->send(new CardNotification($users));
+        }
+            return response()->json('Staff Request restored to default');
+        }
+        return response()->json('Invalid APP KEY');
     }
 
     /**
@@ -55,8 +73,7 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-
-
+        //
     }
 
     /**
@@ -67,12 +84,7 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-//        //
-//        return $id;
-//        $request = User::find(Auth::user()->id);
-//        $request->request = $id;
-//        $request->save();
-//        return redirect('home')->with('toast_success',' ID request submitted successfully');
+        //
     }
 
     /**
