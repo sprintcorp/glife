@@ -23,8 +23,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('user_password');
             $table->integer('isAdmin')->default(0);
-            $table->string('faculty')->nullable();
-            $table->string('department')->nullable();
+            $table->unsignedBigInteger('faculty_id');
+            $table->foreign('faculty_id')->references('id')->on('faculty')->onDelete('cascade');
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('department')->onDelete('cascade');
             $table->string('programme')->nullable();
             $table->integer('level')->nullable();
             $table->string('designation')->nullable();
