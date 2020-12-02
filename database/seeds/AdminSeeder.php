@@ -15,8 +15,8 @@ class AdminSeeder extends Seeder
         $superAdmin = new User();
         $superAdmin->name = "Adeyemi College of Education";
         $superAdmin->matric_no = "admin";
+        $superAdmin->isAdmin = 1;
         $superAdmin->email = "superadmin@schoolkia.com";
-        $superAdmin->phone_number = "08044446218";
         $superAdmin->password = Hash::make('secret123');
         $superAdmin->user_password = 'secret123';
         $superAdmin->save();
