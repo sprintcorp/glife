@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\User;
+use App\Faculty;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -18,9 +20,9 @@ class Department extends Model
     protected $dates = ['deleted_at'];
 
     public function students(){
-        return $this->hasMany('App\User');
+        return $this->hasMany(User::class);
     }
     public function faculty(){
-        return $this->belongsTo('App\Faculty');
+        return $this->belongsTo(Faculty::class,'faculty_id');
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Faculty;
+use App\Request;
+use App\Department;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -39,14 +42,14 @@ class User extends Authenticatable
     ];
 
     public function department(){
-        return $this->belongsTo('App\Department');
+        return $this->belongsTo(Department::class,'department_id');
     }
 
     public function Faculty(){
-        return $this->belongsTo('App\Faculty');
+        return $this->belongsTo(Faculty::class,'faculty_id');
     }
 
     public function Request(){
-        return $this->hasMany('App\Request');
+        return $this->hasMany(Request::class);
     }
 }

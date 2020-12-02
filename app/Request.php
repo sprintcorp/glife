@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -15,6 +16,6 @@ class Request extends Model
 
 
     public function users(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class,'user_id');
     }
 }
