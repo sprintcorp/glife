@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('department')->onDelete('cascade');
             $table->string('programme')->nullable();
+            $table->string('kin')->nullable();
             $table->string('blood')->nullable();
             $table->string('gender')->nullable();
             // $table->string('last_login_at')->nullable();
