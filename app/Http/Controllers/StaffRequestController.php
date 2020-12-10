@@ -19,14 +19,14 @@ class StaffRequestController extends Controller
     public function index()
     {
         $key = $this->request->all();
-        if($key['key'] === env('API_KEY')){
+        // if($key['key'] === env('API_KEY')){
             $users = User::where('request',1    )->where('isAdmin',2)->get();
             if($users->count() === 0){
                 return response()->json("No Request made for id card");
             }
             return response()->json(StaffResource::collection($users));
-        }
-        return response()->json("You don't have access to this file");
+        // }
+        // return response()->json("You don't have access to this file");
     }
 
     /**
@@ -48,7 +48,7 @@ class StaffRequestController extends Controller
     public function store()
     {
         $data = $this->request->all();
-        if($data['key'] === env('API_KEY')) {
+        // if($data['key'] === env('API_KEY')) {
         $object = json_decode($data['id'],true);
         foreach ($object as $key => $value) {
             $action =array(
@@ -61,8 +61,8 @@ class StaffRequestController extends Controller
            Mail::to($users)->send(new CardNotification($users));
         }
             return response()->json('Staff Request restored to default');
-        }
-        return response()->json('Invalid APP KEY');
+        // }
+        // return response()->json('Invalid APP KEY');
     }
 
     /**
