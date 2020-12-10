@@ -69,7 +69,7 @@ class StudentController extends Controller
             Excel::import(new ImportUsers($department, $faculty, $programme, $level), request()->file('file'));
             return back()->with('toast_success', 'Student file successfully imported');
         }catch (QueryException  $queryException){
-            alert()->warning('WarningAlert','Duplicate Field');
+            alert()->warning('WarningAlert',$queryException->getMessage());
             return back();
         }
         return back()->with('toast_success', 'Student file successfully imported');
