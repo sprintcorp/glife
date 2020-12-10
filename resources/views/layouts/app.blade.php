@@ -68,7 +68,7 @@
                             <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('students.index') }}">Add Student</a>
+                            <a class="nav-link" href="{{ route('students.index') }}">Student</a>
                         </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('staffs.index') }}">Staff</a>

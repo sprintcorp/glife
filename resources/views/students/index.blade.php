@@ -18,7 +18,7 @@
                                 <h5 class="card-title">{{$faculty->name}}</h5>
                                 <p class="card-text">No of Student {{$faculty->student->count()}}</p>
                                 <p class="card-text">No of Department {{$faculty->department->count()}}</p>
-                                <a href="{{route('students.show',$faculty->id)}}" class="btn btn-primary">Select Faculty</a>
+                                <a href="{{route('students.show',$faculty->id)}}" class="btn btn-primary">Add Student</a>
                                 <a href="{{route('faculties.show',$faculty->id)}}" class="btn btn-outline-info ml-3">View Department</a>
                                 <a href="{{route('student.show',$faculty->id)}}" class="btn btn-outline-primary  ml-3">View Student</a>
                             </div>

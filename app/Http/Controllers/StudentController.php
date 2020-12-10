@@ -67,8 +67,9 @@ class StudentController extends Controller
         $level = $request['level'];
         try {
             Excel::import(new ImportUsers($department, $faculty, $programme, $level), request()->file('file'));
+            return back()->with('toast_success', 'Student file successfully imported');
         }catch (QueryException  $queryException){
-            alert()->warning('WarningAlert','Duplicate Entry on imported file check Email/Matric column');
+            alert()->warning('WarningAlert','Duplicate Field');
             return back();
         }
         return back()->with('toast_success', 'Student file successfully imported');

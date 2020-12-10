@@ -6,8 +6,9 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class ImportUsers implements ToModel, WithStartRow
+class ImportUsers implements ToModel, WithStartRow,WithValidation
 {
     private $department;
     private $faculty;
@@ -46,5 +47,21 @@ class ImportUsers implements ToModel, WithStartRow
             'programme' => $this->programme,
             'level' => $this->level
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            'matric_no' => 'unique',
+            'email' => 'unique'
+        ];
+    }
+
+    public function customValidationMessages()
+    {
+        return [
+            'matric_no' => 'Matric number already exist',
+            'email' => 'Email already exist'
+        ];
     }
 }
