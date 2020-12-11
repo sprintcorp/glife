@@ -40,8 +40,8 @@
                                         <option value="200">200</option>
                                         <option value="300">300</option>
                                         <option value="400">400</option>
-                                        <option>SELECT DEGREE 2</option>
-                                        <option value="Direct Entry">Direct Entry</option>
+                                        {{-- <option>SELECT DEGREE 2</option>
+                                        <option value="Direct Entry">Direct Entry</option> --}}
                                     </select>
                                 </div>
                             </div>
