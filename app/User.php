@@ -45,11 +45,11 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class,'department_id');
     }
 
-    public function Faculty(){
+    public function faculty(){
         return $this->belongsTo(Faculty::class,'faculty_id');
     }
 
-    public function Request(){
+    public function request(){
         return $this->hasMany(Request::class);
     }
 }
