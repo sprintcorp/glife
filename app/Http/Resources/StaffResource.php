@@ -25,7 +25,7 @@ class StaffResource extends JsonResource
             'NextofKin' => $this->kin,
             'NextofKinAddr' => $this->address,
             'Designation' => $this->designation,
-            'Dept' => $this->department['name']
+            'Dept' => $this->department->name
 
         ];
     }
