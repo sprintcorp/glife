@@ -28,7 +28,7 @@ class AdminController extends Controller
         $key = $this->request->all();
         // dd($key['key']." ".env('API_KEY'));
         // if($key['key'] == env('API_KEY')){
-        $users = User::where('request',1)->where('isAdmin',0)->get();
+        $users = User::where('request',1)->where('isAdmin',0)->where('image','!=',NULL)->where('signature','!=',NULL)->get();
         if($users->count() === 0){
             return response()->json("No Request made for id card");
         }
