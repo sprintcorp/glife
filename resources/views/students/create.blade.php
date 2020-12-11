@@ -23,7 +23,7 @@
                                         <option value="" disabled selected>Select programme</option>
                                         <option value="NCE">NCE</option>
                                         <option value="DEGREE">DEGREE</option>
-                                        <option value="DEGREE 2">DEGREE 2</option>
+                                        {{-- <option value="DEGREE 2">DEGREE 2</option> --}}
                                     </select>
                                 </div>
                             </div>
