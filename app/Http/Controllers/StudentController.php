@@ -126,17 +126,17 @@ class StudentController extends Controller
         if ($request->has('file')) {
           $response =  $this->fileUpload($request->file('file'));
 
-            if(!empty($user->image)) {
-                unlink($user->image);
-            }
+            // if(!empty($user->image)) {
+            //     unlink($user->image);
+            // }
             $user->image = $response;
         }
 
         if ($request->has('sign')) {
             $response =  $this->fileUpload($request->file('sign'));
-            if(!empty($user->signature)) {
-                unlink($user->signature);
-            }
+            // if(!empty($user->signature)) {
+            //     unlink($user->signature);
+            // }
             $user->signature = $response;
         }
         $user->save();

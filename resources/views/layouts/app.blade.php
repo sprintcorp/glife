@@ -106,7 +106,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('students.edit',Auth::user()->id)}}">My Profile</a>
                                 </li>
-                        @if(Auth::user()->request == 0 && Auth::user()->image !== '' && Auth::user()->signature !== '')
+                            @if(Auth::user()->request == 0 && Auth::user()->image !== '' && Auth::user()->signature !== '')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('requests.index')}}">Request ID Card</a>
                                 </li>

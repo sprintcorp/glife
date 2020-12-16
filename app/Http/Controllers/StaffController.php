@@ -95,9 +95,9 @@ class StaffController extends Controller
             try {
                 $response = $this->fileUpload($request->file('file'));
                     
-                if (!empty($user->image)) {
-                    unlink($user->image);
-                }
+                // if (!empty($user->image)) {
+                //     unlink($user->image);
+                // }
                 $user->image = $response;
             }catch (\Exception $e){
                 alert()->warning('WarningAlert',$e->getMessage());
@@ -108,9 +108,9 @@ class StaffController extends Controller
         if ($request->has('sign')) {
             try {
             $response =  $this->fileUpload($request->file('sign'));
-            if(!empty($user->signature)) {
-                unlink($user->signature);
-            }
+            // if(!empty($user->signature)) {
+            //     unlink($user->signature);
+            // }
             $user->signature = $response;
             }catch (\Exception $e){
                 alert()->warning('WarningAlert',$e->getMessage());
