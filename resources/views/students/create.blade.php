@@ -32,9 +32,9 @@
                                     <select id="level" name="level" class="form-control">
                                         <option value="">---Select level---</option>
                                         <option>SELECT NCE</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option value="1">Part 1</option>
+                                        <option value="2">Part 2</option>
+                                        <option value="3">Part 3</option>
                                         <option>SELECT DEGREE</option>
                                         <option value="100">100</option>
                                         <option value="200">200</option>
