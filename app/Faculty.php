@@ -24,7 +24,7 @@ class Faculty extends Model
     public function department(){
         return $this->hasMany(Department::class);
     }
-    public  function student(){
+    public function student(){
         return $this->hasMany(User::class);
     }
 }

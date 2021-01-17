@@ -8,6 +8,7 @@
                 <div class="card">
                     <div class="card-header">Student Overview</div>
                     <div class="row p-5 d-flex justify-content-center">
+                        
                         <table class="table" id="table">
                             <thead>
                                 <tr>
@@ -30,8 +31,8 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->level}}</td>
                                         <td>{{$user->matric_no}}</td>
-                                        <td>{{$user->faculty->name}}</td>
-                                        <td>{{$user->department->name}}</td>
+                                        <td>{{$user->faculties->name}}</td>
+                                        <td>{{$user->departments->name}}</td>
                                         <td>{{$user->programme}}</td>
                                         <td>{{$user->gender}}</td>
                                         <td><button class="btn btn-info" data-toggle="modal" data-target="#student{{$user->id}}"><i class="fa fa-edit"></i></button></td>
