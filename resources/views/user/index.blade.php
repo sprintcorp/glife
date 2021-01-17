@@ -20,6 +20,7 @@
                                 <th scope="col">Programme</th>
                                 <th scope="col">Gender</th>
                                 <th scope="col">Edit</th>
+                                <th scope="col">Delele</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,7 +34,12 @@
                                         <td>{{$user->department->name}}</td>
                                         <td>{{$user->programme}}</td>
                                         <td>{{$user->gender}}</td>
-                                        <td><button data-toggle="modal" data-target="#student{{$user->id}}"><i class="fa fa-edit"></i></button></td>
+                                        <td><button class="btn btn-info" data-toggle="modal" data-target="#student{{$user->id}}"><i class="fa fa-edit"></i></button></td>
+                                        <td><form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </form></td>
                                 </tr>        
                                     @endforeach
                                 

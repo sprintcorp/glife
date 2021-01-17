@@ -88,6 +88,13 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        if($user){
+            $user->delete();
+            return back()->with('toast_success','User deleted successfully');
+        }else {
+            return back()->with('toast_error', 'Record not Deleted');
+        }
     }
 }
