@@ -21,24 +21,34 @@
     <!------ Include the above in your HEAD tag ---------->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    
+    <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script
+    src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<!-- <link rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+<link rel="stylesheet"
+    href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+
 
     <script src="{{ asset('js/jquery.jscroll.min.js') }}"></script>
-{{--    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>--}}
+<!-- {{--    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>--}}
 {{--    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
-{{--    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>--}}
+{{--    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>--}} -->
 
 
 
-{{--    <script>--}}
+<!-- {{--    <script>--}}
 {{--        $(document).ready(function() {--}}
 {{--            $('#example').DataTable();--}}
 {{--        } );--}}
-{{--    </script>--}}
+{{--    </script>--}} -->
 
 
 
@@ -68,7 +78,7 @@
                             <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('students.index') }}">Student</a>
+                            <a class="nav-link" href="{{ route('students.index') }}">Faculties</a>
                         </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('staffs.index') }}">Staff</a>
@@ -80,6 +90,9 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('account.create') }}">Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index') }}">Students</a>
                             </li>
                         <li class="nav-item">
                             <a href="{{asset('Book1.xlsx')}}" class="nav-link">Download Student Form</a>
@@ -162,7 +175,11 @@
     </div>
     @include('sweetalert::alert')
 <script src="{{asset('js/toastr.min.js')}}"></script>
-
+<script>
+  $(document).ready(function() {
+    $('#table').DataTable();
+} );
+ </script>
 </body>
 
 </html>
